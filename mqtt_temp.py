@@ -85,8 +85,7 @@ while(True):
     #
     try:
         temp = get_temp()
-        fahrenheit = float(temp * 9/5.0 + 32)
-        mqtt(fahrenheit)
+        mqtt(temp)
 
         # Blocking loop to the local Mosquitto broker
         paho.loop_forever()
