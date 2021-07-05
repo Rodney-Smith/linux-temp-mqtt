@@ -1,0 +1,4 @@
+###### Requirements without Version Specifiers ######`
+
+###### Requirements with Version Specifiers ######`
+paho-mqtt >= 1.5.1             # Version must be at least version 1.5.1
