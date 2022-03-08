@@ -1,4 +1,4 @@
-# Raspberry Pi Temperature Project
+# [Raspberry Pi Temperature Project](https://github.com/Rodney-Smith/linux-temp-mqtt)
 
 Raspberry Pi Temperature Reporting
 
@@ -13,26 +13,51 @@ Raspberry Pi Temperature Reporting
 
 ### RPi OS used:
 
-- Installed Buster - Lite - Headless
+- Installed Bullseye - Lite - Headless - Pi Zero WH
 
-### Installed on the Raspberry Pi
+### Download the project on the Raspberry Pi
+```
+sudo mkdir /opt/scripts
+sudo chown pi:root /opt/scripts
+cd /opt/scripts
+git clone https://github.com/Rodney-Smith/linux-temp-mqtt.git
+```
 
-- `sudo apt-get install -y git python3 build-essential python3-pip python3-dev python3-libgpiod python3-pil python3-setuptools`
-- `sudo python3 -m pip install --upgrade pip setuptools wheel`
-- `sudo pip3 install  -r requirements.txt`
+### Install dependencies
+```
+sudo apt-get update && sudo apt-get install -y build-essential git python3 python3-pip python3-dev python3-libgpiod python3-pil python3-setuptools
+sudo pip3 install -r requirements.txt
+```
 
-ssh into the RPi
+### Modify the config.json file
+```
+cd /opt/scripts/linux-temp-mqtt
+mv config.example.json config.json
+nano config.json
+{
+    "mqtt": {
+        "clientid":"unique-id",
+        "topic":"linux/hostname/temperature",
+        "broker":"mqttbroker.local",
+        "port":1883,
+        "user":"mqttusername",
+        "password":"mqttpassword"
+    }
+}
+```
 
-Modify the config.json to incorporate the MQTT broker configuration and the unique hostname in the topic path.
+### Enable and start the service
 
-Create or copy the startup service for the Python script:
-
-`sudo cp /opt/scripts/ReportTemp.service /etc/systemd/system/ReportTemp.service`
+Create or copy the startup service for the python script:
+`ssudo cp /opt/scripts/linux-temp-mqtt/SystemTemperature.service /etc/systemd/system/SystemTemperature.service`
 
 Next you will need to reload, enable and start the new service:
-
-`sudo systemctl daemon-reload && systemctl enable ReportTemp.service && systemctl start ReportTemp;`
-
+```
+sudo systemctl daemon-reload
+sudo systemctl enable SystemTemperature.service
+sudo systemctl start SystemTemperature.service
+```
 Ensure there are no errors.
-
+`systemctl status SystemTemperature.service`
+or
 `sudo journalctl -u ReportTemp.service -f`
