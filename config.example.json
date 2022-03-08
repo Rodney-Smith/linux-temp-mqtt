@@ -1,10 +1,10 @@
 {
     "mqtt_": {
-        "clientid": "",
-        "topic": "linux/hostname/temp",
-        "broker": "10.0.x.x",
+        "clientid": "unique-id",
+        "topic": "linux/hostname/temperature",
+        "broker": "mqttbroker.local",
         "port": 1883,
-        "user": "mqtt_user",
-        "password": "ChangeMe"
+        "user": "mqttusername",
+        "password": "mqttpassword"
     }
 }
