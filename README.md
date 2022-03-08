@@ -49,7 +49,9 @@ nano config.json
 ### Enable and start the service
 
 Create or copy the startup service for the python script:
-`ssudo cp /opt/scripts/linux-temp-mqtt/SystemTemperature.service /etc/systemd/system/SystemTemperature.service`
+```
+sudo cp /opt/scripts/linux-temp-mqtt/SystemTemperature.service /etc/systemd/system/SystemTemperature.service
+```
 
 Next you will need to reload, enable and start the new service:
 ```
