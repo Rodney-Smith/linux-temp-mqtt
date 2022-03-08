@@ -1,10 +1,11 @@
 [Unit]
 Description=RPi CPU Temperature reporting over MQTT
+After = network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/env python3 /opt/scripts/mqtt_temp.py
-WorkingDirectory=/opt/scripts
+ExecStart=/usr/bin/env python3 /opt/scripts/linux-temp-mqtt/mqtt_systemp.py
+WorkingDirectory=/opt/scripts/linux-temp-mqtt
 TimeoutStartSec=120
 TimeoutStopSec=30
 Restart=always
