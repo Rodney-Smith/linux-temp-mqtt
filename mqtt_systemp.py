@@ -98,6 +98,6 @@ while(True):
 __author__ = "Rodney Smith"
 __copyright__ = "Copyright 2021, Temperature Reporting Project"
 __license__ = "MIT"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __contact__ = "rodney.delauer@gmail.com"
 __status__ = "Development"
