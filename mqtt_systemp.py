@@ -90,11 +90,13 @@ while(True):
     # Connect to the local MQTT broker
     #
     try:
+        # Get the current temperature in Celsius
         temp_celsius = get_temp()
+        # Convert temperature to Fahrenheit
         temp_fahrenheit = (temp_celsius * 9 / 5) + 32
+        # Publish temperature to MQTT broker
         mqtt(temp_fahrenheit)
-
-        # Blocking loop to the local Mosquitto broker
+        # Blocking loop to maintain connection with MQTT broker
         paho.loop_forever()
     except:
         print("Failed connection to local MQTT broker");
