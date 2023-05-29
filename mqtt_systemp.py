@@ -93,9 +93,9 @@ while(True):
         # Get the current temperature in Celsius
         temp_celsius = get_temp()
         # Convert temperature to Fahrenheit
-        temp_fahrenheit = (temp_celsius * 9 / 5) + 32
+        temp_fahrenheit = (float(temp_celsius) * 9 / 5) + 32
         # Publish temperature to MQTT broker
-        mqtt(temp_fahrenheit)
+        mqtt(str(temp_fahrenheit))
         # Blocking loop to maintain connection with MQTT broker
         paho.loop_forever()
     except:
