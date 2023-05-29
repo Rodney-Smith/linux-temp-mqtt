@@ -49,9 +49,14 @@ def getConfig():
 
 
 def get_temp():
-    temp_celsius = float(check_output(["vcgencmd","measure_temp"]).decode("UTF-8"))
-    temp_fahrenheit = (temp_celsius * 9/5) + 32
-    return str(temp_fahrenheit)
+    """
+    Retrieve the temperature from the Raspberry Pi.
+
+    Returns:
+        str: Temperature value.
+    """
+    temp = check_output(["vcgencmd","measure_temp"]).decode("UTF-8")
+    return(findall("\d+\.\d+",temp)[0])
 
 
 def mqtt(payload):
@@ -85,8 +90,9 @@ while(True):
     # Connect to the local MQTT broker
     #
     try:
-        temp = get_temp()
-        mqtt(temp)
+        temp_celsius = get_temp()
+        temp_fahrenheit = (temp_celsius * 9 / 5) + 32
+        mqtt(temp_fahrenheit)
 
         # Blocking loop to the local Mosquitto broker
         paho.loop_forever()
