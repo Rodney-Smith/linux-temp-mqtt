@@ -49,8 +49,9 @@ def getConfig():
 
 
 def get_temp():
-    temp = check_output(["vcgencmd","measure_temp"]).decode("UTF-8")
-    return(findall("\d+\.\d+",temp)[0])
+    temp_celsius = float(check_output(["vcgencmd","measure_temp"]).decode("UTF-8"))
+    temp_fahrenheit = (temp_celsius * 9/5) + 32
+    return str(temp_fahrenheit)
 
 
 def mqtt(payload):
